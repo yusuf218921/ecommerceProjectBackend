@@ -1,11 +1,17 @@
 package bigbox.example.ecommenceProject.entities.concretes;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Table(name = "category")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,23 +20,6 @@ public class Category {
     @Column(name = "category_name")
     private String categoryName;
 
-    public Category(String categoryName) {
-        this.categoryName = categoryName;
-    }
-
-    public int getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    public String getCategoryName() {
-        return categoryName;
-    }
-
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
-    }
+    @OneToMany(mappedBy = "category")
+    private List<Product> products;
 }

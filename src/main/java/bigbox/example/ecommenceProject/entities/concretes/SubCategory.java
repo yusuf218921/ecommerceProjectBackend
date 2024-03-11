@@ -1,11 +1,15 @@
 package bigbox.example.ecommenceProject.entities.concretes;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "subcategory")
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class SubCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,32 +20,5 @@ public class SubCategory {
     @Column(name = "subcategory_name")
     private String subCategoryName;
 
-    public SubCategory(int categoryId, String subCategoryName) {
-        this.categoryId = categoryId;
-        this.subCategoryName = subCategoryName;
-    }
 
-    public int getSubCategoryId() {
-        return subCategoryId;
-    }
-
-    public void setSubCategoryId(int subCategoryId) {
-        this.subCategoryId = subCategoryId;
-    }
-
-    public int getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    public String getSubCategoryName() {
-        return subCategoryName;
-    }
-
-    public void setSubCategoryName(String subCategoryName) {
-        this.subCategoryName = subCategoryName;
-    }
 }
