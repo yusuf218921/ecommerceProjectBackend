@@ -10,7 +10,7 @@ import java.util.List;
 
 @Service
 public class ProductManager implements ProductService {
-    private ProductDao productDao;
+    private final ProductDao productDao;
 
     @Autowired
     public ProductManager(ProductDao productDao) {

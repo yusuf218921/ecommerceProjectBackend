@@ -15,6 +15,10 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id")
     private int productId;
+    @Column(name = "category_id")
+    private int categoryId;
+    @Column(name = "subcategory_id")
+    private int subcategoryId;
     @Column(name = "product_name")
     private String productName;
     @Column(name = "brand_name")
@@ -25,7 +29,6 @@ public class Product {
     private double productPrice;
     @Column(name = "stock_amount")
     private int stockAmount;
-    @ManyToOne()
-    @JoinColumn(name="category_id")
-    private Category category;
+    @Column(name = "status")
+    private boolean status;
 }

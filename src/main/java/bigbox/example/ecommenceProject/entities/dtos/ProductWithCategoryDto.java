@@ -11,5 +11,8 @@ public class ProductWithCategoryDto {
     private int id;
     private String productName;
     private String categoryName;
+    private String subCategoryName;
+    private String description;
+    private int price;
 
 }
