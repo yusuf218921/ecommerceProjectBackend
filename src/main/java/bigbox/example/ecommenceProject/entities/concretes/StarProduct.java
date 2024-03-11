@@ -1,9 +1,11 @@
 package bigbox.example.ecommenceProject.entities.concretes;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 @Entity
 @Table
+@Data
 public class StarProduct {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
