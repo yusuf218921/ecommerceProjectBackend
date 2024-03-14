@@ -6,7 +6,6 @@ import bigbox.example.ecommenceProject.utils.requests.MetaData;
 import bigbox.example.ecommenceProject.utils.results.DataResult;
 import bigbox.example.ecommenceProject.utils.results.SuccessDataResult;
 import bigbox.example.ecommenceProject.repositories.StarProductRepository;
-import bigbox.example.ecommenceProject.entities.entity.StarProduct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -14,12 +13,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
-public class StarProductManager implements StarProductService {
+public class StarProductServiceImpl implements StarProductService {
 
     StarProductRepository starProductRepository;
 
     @Autowired
-    public StarProductManager(StarProductRepository starProductDao) {
+    public StarProductServiceImpl(StarProductRepository starProductDao) {
         this.starProductRepository = starProductDao;
     }
 

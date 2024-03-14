@@ -11,11 +11,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class SubCategoryManager implements SubCategoryService {
+public class SubCategoryServiceImpl implements SubCategoryService {
     SubCategoryRepository subCategoryRepository;
 
     @Autowired
-    public SubCategoryManager(SubCategoryRepository subCategoryRepository) {
+    public SubCategoryServiceImpl(SubCategoryRepository subCategoryRepository) {
         this.subCategoryRepository = subCategoryRepository;
     }
 

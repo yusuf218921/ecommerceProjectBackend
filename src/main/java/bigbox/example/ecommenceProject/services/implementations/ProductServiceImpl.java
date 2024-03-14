@@ -14,11 +14,11 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class ProductManager implements ProductService {
+public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
 
     @Autowired
-    public ProductManager(ProductRepository productRepository) {
+    public ProductServiceImpl(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
 
