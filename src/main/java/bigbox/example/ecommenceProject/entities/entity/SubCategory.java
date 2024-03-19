@@ -24,8 +24,15 @@ public class SubCategory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "subcategory_id")
     private int subCategoryId;
+
     @Column(name = "subcategory_name")
     private String subCategoryName;
+
+    @Column(name = "subcategory_img_url")
+    private String subCategoryImgUrl;
+
+    @Column(name = "is_popular")
+    private boolean isPopular;
 
     @OneToMany(mappedBy = "subCategory")
     private List<Product> products;

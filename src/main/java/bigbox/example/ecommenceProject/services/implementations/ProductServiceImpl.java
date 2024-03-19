@@ -1,5 +1,6 @@
 package bigbox.example.ecommenceProject.services.implementations;
 
+import bigbox.example.ecommenceProject.utils.requests.ProductRequestParameters;
 import bigbox.example.ecommenceProject.utils.results.*;
 import bigbox.example.ecommenceProject.services.contracts.ProductService;
 import bigbox.example.ecommenceProject.utils.requests.MetaData;
@@ -23,9 +24,10 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public DataResult<MetaData<Product>> getAll(int pageSize, int pageNo) {
-        Pageable pageable = PageRequest.of(pageNo, pageSize);
-        Page<Product> products = productRepository.findAll(pageable);
+    public DataResult<MetaData<Product>> getAll(ProductRequestParameters requestParameters) {
+        Pageable pageable = PageRequest.of(requestParameters.getPageNo(), requestParameters.getPageSize());
+        Page<Product> products = productRepository.findProductsByProductPriceRange(
+                requestParameters.getMinPrice(),requestParameters.getMaxPrice(), requestParameters.getOrderBy(), pageable);
         MetaData<Product> metaData = new MetaData<>();
         metaData.setContent(products.getContent());
         metaData.setPageSize(products.getSize());
@@ -33,7 +35,7 @@ public class ProductServiceImpl implements ProductService {
         metaData.setTotalCount(products.getTotalPages());
         metaData.setHasNext(products.hasNext());
         metaData.setHasPrevious(products.hasPrevious());
-        metaData.setCurrentPage(pageNo);
+        metaData.setCurrentPage(requestParameters.getPageNo());
         return new SuccessDataResult<>(metaData, "Ürünler Listelendi");
     }
 
@@ -45,9 +47,10 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public DataResult<MetaData<Product>> getByCategoryId(int id, int pageSize, int pageNo) {
-        Pageable pageable = PageRequest.of(pageNo, pageSize);
-        Page<Product> products = productRepository.getBySubCategory_Category_CategoryId(id,pageable);
+    public DataResult<MetaData<Product>> getByCategoryId(int id, ProductRequestParameters requestParameters) {
+        Pageable pageable = PageRequest.of(requestParameters.getPageNo(), requestParameters.getPageSize());
+        Page<Product> products = productRepository.getBySubCategory_Category_CategoryId(
+                id, requestParameters.getMinPrice(), requestParameters.getMaxPrice(), requestParameters.getOrderBy(), pageable);
         MetaData<Product> metaData = new MetaData<>();
         metaData.setContent(products.getContent());
         metaData.setPageSize(products.getSize());
@@ -55,14 +58,15 @@ public class ProductServiceImpl implements ProductService {
         metaData.setTotalCount(products.getTotalPages());
         metaData.setHasNext(products.hasNext());
         metaData.setHasPrevious(products.hasPrevious());
-        metaData.setCurrentPage(pageNo);
+        metaData.setCurrentPage(requestParameters.getPageNo());
         return new SuccessDataResult<>(metaData,"Ürünler Listelendi");
     }
 
     @Override
-    public DataResult<MetaData<Product>> getBySubCategoryId(int categoryId,int subCategoryId, int pageSize, int pageNo) {
-        Pageable pageable = PageRequest.of(pageNo, pageSize);
-        Page<Product> products = productRepository.getBySubCategory_Category_CategoryIdAndSubCategory_SubCategoryId(categoryId,subCategoryId,pageable);
+    public DataResult<MetaData<Product>> getBySubCategoryId(int categoryId,int subCategoryId, ProductRequestParameters requestParameters) {
+        Pageable pageable = PageRequest.of(requestParameters.getPageNo(), requestParameters.getPageSize());
+        Page<Product> products = productRepository.getBySubCategory_Category_CategoryIdAndSubCategory_SubCategoryId(
+                categoryId,subCategoryId, requestParameters.getMinPrice(), requestParameters.getMaxPrice(), requestParameters.getOrderBy(), pageable);
         MetaData<Product> metaData = new MetaData<>();
         metaData.setContent(products.getContent());
         metaData.setPageSize(products.getSize());
@@ -70,14 +74,15 @@ public class ProductServiceImpl implements ProductService {
         metaData.setTotalCount(products.getTotalPages());
         metaData.setHasNext(products.hasNext());
         metaData.setHasPrevious(products.hasPrevious());
-        metaData.setCurrentPage(pageNo);
+        metaData.setCurrentPage(requestParameters.getPageNo());
         return new SuccessDataResult<>(metaData);
     }
 
     @Override
-    public DataResult<MetaData<Product>> getByProductNameContains(String name, int pageSize, int pageNo) {
-        Pageable pageable = PageRequest.of(pageNo, pageSize);
-        Page<Product> products = productRepository.getByProductNameContains(name,pageable);
+    public DataResult<MetaData<Product>> getByProductNameContains(String name, ProductRequestParameters requestParameters) {
+        Pageable pageable = PageRequest.of(requestParameters.getPageNo(), requestParameters.getPageSize());
+        Page<Product> products = productRepository.getByProductNameContains(
+                name, requestParameters.getMinPrice(), requestParameters.getMaxPrice(), requestParameters.getOrderBy(), pageable);
         MetaData<Product> metaData = new MetaData<>();
         metaData.setContent(products.getContent());
         metaData.setPageSize(products.getSize());
@@ -85,7 +90,7 @@ public class ProductServiceImpl implements ProductService {
         metaData.setTotalCount(products.getTotalPages());
         metaData.setHasNext(products.hasNext());
         metaData.setHasPrevious(products.hasPrevious());
-        metaData.setCurrentPage(pageNo);
+        metaData.setCurrentPage(requestParameters.getPageNo());
         return new SuccessDataResult<>(metaData);
     }
 

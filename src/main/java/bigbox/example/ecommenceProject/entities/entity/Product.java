@@ -35,6 +35,9 @@ public class Product {
     @Column(name = "product_price")
     private double productPrice;
 
+    @Column(name = "product_gender")
+    private short productGender;
+
     @Column(name = "stock_amount")
     private int stockAmount;
 

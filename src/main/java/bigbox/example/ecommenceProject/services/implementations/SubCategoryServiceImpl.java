@@ -23,4 +23,9 @@ public class SubCategoryServiceImpl implements SubCategoryService {
     public DataResult<List<SubCategory>> getAllSubCategories() {
         return new SuccessDataResult<>(subCategoryRepository.findAll());
     }
+
+    @Override
+    public DataResult<List<SubCategory>> getAllSubCategoriesPopular() {
+        return new SuccessDataResult<>(subCategoryRepository.getByIsPopular(true));
+    }
 }

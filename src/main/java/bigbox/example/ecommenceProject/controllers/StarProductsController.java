@@ -8,14 +8,12 @@ import bigbox.example.ecommenceProject.services.contracts.StarProductService;
 import bigbox.example.ecommenceProject.utils.requests.MetaData;
 import bigbox.example.ecommenceProject.utils.results.DataResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
 @RequestMapping("/api/starproduct")
+@CrossOrigin(origins = "http://localhost:5173/")
 public class StarProductsController {
     StarProductService starProductService;
 
