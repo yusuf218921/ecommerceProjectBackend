@@ -1,8 +1,6 @@
 package bigbox.example.ecommenceProject.controllers;
 
-import bigbox.example.ecommenceProject.entities.entity.Category;
 import bigbox.example.ecommenceProject.entities.entity.SubCategory;
-import bigbox.example.ecommenceProject.services.contracts.CategoryService;
 import bigbox.example.ecommenceProject.services.contracts.SubCategoryService;
 import bigbox.example.ecommenceProject.utils.results.DataResult;
 import org.springframework.beans.factory.annotation.Autowired;

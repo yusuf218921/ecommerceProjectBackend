@@ -3,21 +3,22 @@ package bigbox.example.ecommenceProject.utils.requests;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
 @Getter
+@Setter
 public class ProductRequestParameters {
     private String orderBy;
-    private double minPrice = 0;
-    private double maxPrice = 100000;
-    private int pageSize = 10;
-    private int pageNo = 0;
+    private double minPrice;
+    private double maxPrice;
+    private Short gender;
+    private int pageSize;
+    private int pageNo;
 
-    public ProductRequestParameters(String orderBy, double minPrice, double maxPrice, int pageSize, int pageNo) {
+    public ProductRequestParameters(String orderBy, double minPrice, double maxPrice,Short gender, int pageSize, int pageNo) {
         this.orderBy = orderBy;
         this.minPrice = minPrice;
         this.maxPrice = maxPrice;
+        this.gender = gender;
         this.pageSize = pageSize;
         this.pageNo = pageNo;
     }
-
 }

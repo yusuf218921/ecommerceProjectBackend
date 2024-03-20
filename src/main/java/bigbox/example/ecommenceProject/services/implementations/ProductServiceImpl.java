@@ -27,7 +27,7 @@ public class ProductServiceImpl implements ProductService {
     public DataResult<MetaData<Product>> getAll(ProductRequestParameters requestParameters) {
         Pageable pageable = PageRequest.of(requestParameters.getPageNo(), requestParameters.getPageSize());
         Page<Product> products = productRepository.findProductsByProductPriceRange(
-                requestParameters.getMinPrice(),requestParameters.getMaxPrice(), requestParameters.getOrderBy(), pageable);
+                requestParameters.getMinPrice(),requestParameters.getMaxPrice(), requestParameters.getOrderBy(), requestParameters.getGender(), pageable);
         MetaData<Product> metaData = new MetaData<>();
         metaData.setContent(products.getContent());
         metaData.setPageSize(products.getSize());
@@ -50,7 +50,7 @@ public class ProductServiceImpl implements ProductService {
     public DataResult<MetaData<Product>> getByCategoryId(int id, ProductRequestParameters requestParameters) {
         Pageable pageable = PageRequest.of(requestParameters.getPageNo(), requestParameters.getPageSize());
         Page<Product> products = productRepository.getBySubCategory_Category_CategoryId(
-                id, requestParameters.getMinPrice(), requestParameters.getMaxPrice(), requestParameters.getOrderBy(), pageable);
+                id, requestParameters.getMinPrice(), requestParameters.getMaxPrice(), requestParameters.getOrderBy(), requestParameters.getGender(), pageable);
         MetaData<Product> metaData = new MetaData<>();
         metaData.setContent(products.getContent());
         metaData.setPageSize(products.getSize());
@@ -66,7 +66,7 @@ public class ProductServiceImpl implements ProductService {
     public DataResult<MetaData<Product>> getBySubCategoryId(int categoryId,int subCategoryId, ProductRequestParameters requestParameters) {
         Pageable pageable = PageRequest.of(requestParameters.getPageNo(), requestParameters.getPageSize());
         Page<Product> products = productRepository.getBySubCategory_Category_CategoryIdAndSubCategory_SubCategoryId(
-                categoryId,subCategoryId, requestParameters.getMinPrice(), requestParameters.getMaxPrice(), requestParameters.getOrderBy(), pageable);
+                categoryId,subCategoryId, requestParameters.getMinPrice(), requestParameters.getMaxPrice(), requestParameters.getOrderBy(), requestParameters.getGender(), pageable);
         MetaData<Product> metaData = new MetaData<>();
         metaData.setContent(products.getContent());
         metaData.setPageSize(products.getSize());
@@ -82,7 +82,7 @@ public class ProductServiceImpl implements ProductService {
     public DataResult<MetaData<Product>> getByProductNameContains(String name, ProductRequestParameters requestParameters) {
         Pageable pageable = PageRequest.of(requestParameters.getPageNo(), requestParameters.getPageSize());
         Page<Product> products = productRepository.getByProductNameContains(
-                name, requestParameters.getMinPrice(), requestParameters.getMaxPrice(), requestParameters.getOrderBy(), pageable);
+                name, requestParameters.getMinPrice(), requestParameters.getMaxPrice(), requestParameters.getOrderBy(), requestParameters.getGender(), pageable);
         MetaData<Product> metaData = new MetaData<>();
         metaData.setContent(products.getContent());
         metaData.setPageSize(products.getSize());

@@ -6,6 +6,7 @@ import bigbox.example.ecommenceProject.utils.requests.ProductRequestParameters;
 import bigbox.example.ecommenceProject.utils.results.DataResult;
 import bigbox.example.ecommenceProject.utils.results.Result;
 import bigbox.example.ecommenceProject.entities.entity.Product;
+import jakarta.websocket.server.PathParam;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -20,7 +21,13 @@ public class ProductsController {
 
     @GetMapping()
     public DataResult<MetaData<Product>> getAll(
-            ProductRequestParameters requestParameters){
+            @RequestParam(value = "orderBy", required = false) String orderBy,
+            @RequestParam(value = "minPrice", required = false, defaultValue = "0") Double minPrice,
+            @RequestParam(value = "maxPrice", required = false, defaultValue = "100000") Double maxPrice,
+            @RequestParam(value = "gender", required = false) Short gender,
+            @RequestParam(value = "pageNo", required = false, defaultValue = "0") int pageNo,
+            @RequestParam(value = "pageSize", required = false, defaultValue = "20") int pageSize){
+        ProductRequestParameters requestParameters = new ProductRequestParameters(orderBy,minPrice,maxPrice,gender,pageSize,pageNo);
         return productService.getAll(requestParameters);
     }
 
@@ -32,7 +39,13 @@ public class ProductsController {
     @GetMapping("/category/{categoryId}")
     public DataResult<MetaData<Product>> getByCategoryId(
             @PathVariable int categoryId,
-            ProductRequestParameters requestParameters){
+            @RequestParam(value = "orderBy", required = false) String orderBy,
+            @RequestParam(value = "minPrice", required = false, defaultValue = "0") Double minPrice,
+            @RequestParam(value = "maxPrice", required = false, defaultValue = "100000") Double maxPrice,
+            @RequestParam(value = "gender", required = false) Short gender,
+            @RequestParam(value = "pageNo", required = false, defaultValue = "0") int pageNo,
+            @RequestParam(value = "pageSize", required = false, defaultValue = "20") int pageSize){
+        ProductRequestParameters requestParameters = new ProductRequestParameters(orderBy,minPrice,maxPrice,gender,pageSize,pageNo);
         return productService.getByCategoryId(categoryId, requestParameters);
     }
 
@@ -40,14 +53,26 @@ public class ProductsController {
     public DataResult<MetaData<Product>> getBySubCategoryId(
             @PathVariable int categoryId,
             @PathVariable int subCategoryId,
-            ProductRequestParameters requestParameters){
+            @RequestParam(value = "orderBy", required = false) String orderBy,
+            @RequestParam(value = "minPrice", required = false, defaultValue = "0") Double minPrice,
+            @RequestParam(value = "maxPrice", required = false, defaultValue = "100000") Double maxPrice,
+            @RequestParam(value = "gender", required = false) Short gender,
+            @RequestParam(value = "pageNo", required = false, defaultValue = "0") int pageNo,
+            @RequestParam(value = "pageSize", required = false, defaultValue = "20") int pageSize){
+        ProductRequestParameters requestParameters = new ProductRequestParameters(orderBy,minPrice,maxPrice,gender,pageSize,pageNo);
         return productService.getBySubCategoryId(categoryId,subCategoryId, requestParameters);
     }
 
     @GetMapping("/search/{productName}")
     public DataResult<MetaData<Product>> getByProductNameContains(
             @PathVariable String productName,
-            ProductRequestParameters requestParameters){
+            @RequestParam(value = "orderBy", required = false) String orderBy,
+            @RequestParam(value = "minPrice", required = false, defaultValue = "0") Double minPrice,
+            @RequestParam(value = "maxPrice", required = false, defaultValue = "100000") Double maxPrice,
+            @RequestParam(value = "gender", required = false) Short gender,
+            @RequestParam(value = "pageNo", required = false, defaultValue = "0") int pageNo,
+            @RequestParam(value = "pageSize", required = false, defaultValue = "20") int pageSize){
+        ProductRequestParameters requestParameters = new ProductRequestParameters(orderBy,minPrice,maxPrice,gender,pageSize,pageNo);
         return productService.getByProductNameContains(productName, requestParameters);
     }
 
